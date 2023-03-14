@@ -1,0 +1,26 @@
+{
+  "name": "openai-whisper-telegram-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot that allows you to convert speech to text using Whisper from OpenAI",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js"
+  },
+  "keywords": [
+    "nodejs",
+    "openai",
+    "whisper",
+    "telegram"
+  ],
+  "author": "Evgeniy Galkovskiy",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.3.4",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}

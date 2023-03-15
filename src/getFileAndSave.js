@@ -10,9 +10,19 @@ export const getFileAndSave = async (url) => {
     fs.mkdirSync(dir);
   }
 
+  const writeStream = fs.createWriteStream(path);
   const { data } = await axios.get(url, {
     responseType: 'stream',
   });
-  await data.pipe(fs.createWriteStream(path));
-  return path;
+  data.pipe(writeStream);
+  
+  return new Promise((resolve, reject) => {
+    writeStream.on('finish', () => {
+      resolve(path);
+    });
+
+    writeStream.on('error', (err) => {
+      reject(err);
+    });
+  });
 };

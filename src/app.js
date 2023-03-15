@@ -3,6 +3,8 @@ import * as dotenv from 'dotenv';
 import { getFileAndSave } from './getFileAndSave.js';
 import { sendFileToWhisper } from './sendFileToWhisper.js';
 import { sendDataToTelegraf } from './sendDataToTelegraf.js';
+import { removeFile } from './removeFile.js';
+import { join } from 'path';
 dotenv.config();
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
@@ -14,6 +16,10 @@ bot.on('audio', async (ctx) => {
 
   if (transcripted) {
     const telegrafLink = await sendDataToTelegraf(transcripted);
+    ctx.reply(telegrafLink);
+
+    const fullFilePath = join(process.cwd(), downloaded);
+    removeFile(fullFilePath);
   }
 });
 

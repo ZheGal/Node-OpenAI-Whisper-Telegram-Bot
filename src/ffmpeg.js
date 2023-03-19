@@ -1,3 +1,5 @@
+import Ffmpeg from "fluent-ffmpeg";
+
 const ffmpeg = async (path) => {
   const ffmpeg = new Ffmpeg('./audio.mp3');
   ffmpeg
